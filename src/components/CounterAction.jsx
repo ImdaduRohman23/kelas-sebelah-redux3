@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import TYPES from '../redux/types';
 // import { INCREMENT, DECREMENT, RESET } from '../redux/types';
 //dispatch => untuk melempar atau mengirim apapun ke redux
@@ -7,15 +7,22 @@ import TYPES from '../redux/types';
 const CounterAction = () => {
     const dispatch = useDispatch();
 
+    const {counterReducer} = useSelector(ehe => ehe)
+
+
     const handlePlus = () => {
+        const result = counterReducer.total + 1;
         dispatch({
-            type: TYPES.INCREMENT
+            type: TYPES.INCREMENT,
+            payload: result
         });
     };
 
     const handleMinus = () => {
+        const minus = counterReducer.total - 1;
         dispatch({
-            type: TYPES.DECREMENT
+            type: TYPES.DECREMENT,
+            payload: minus,
         });
     };
 
